@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import SignUpPage from '../views/SignUpPage.vue';
+import AlbumDetailPage from '../views/AlbumDetailPage.vue';
+import AlbumPage from '../views/AlbumPage.vue';
 
 Vue.use(VueRouter);
 
@@ -9,6 +12,23 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/signup',
+    name: 'SignUpPage',
+    component: SignUpPage,
+  },
+  {
+    path: '/album/:id',
+    name: 'AlbumDetailPage',
+    component: AlbumDetailPage,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/albums',
+    name: 'AlbumPage',
+    component: AlbumPage,
+    meta: { requiresAuth: true },
   },
   {
     path: '/about',
