@@ -11,7 +11,7 @@
 
 import { mapActions } from 'vuex';
 import Navbar from '@/components/Navbar.vue';
-
+// https://jh6wtuc2qjamfkjlfick4mvhc4.appsync-api.us-east-1.amazonaws.com/graphql
 export default {
   mounted() {
     this.authAction();
