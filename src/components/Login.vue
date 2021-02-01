@@ -9,7 +9,7 @@
             <label for="password" class="block mt-10 mb-2 text-sm font-bold text-gray-700">
                 Password:
             </label>
-            <input type="password" class="input_password" v-model="username" id="password" >
+            <input type="password" class="input_password" v-model="password" id="password" >
         </div>
         <button class="btn-blue"> Sign In </button>
       </form>
@@ -41,6 +41,7 @@ export default {
           username: this.username,
           password: this.password,
         });
+        this.$router.push('/albums');
       } catch (error) {
         this.error = error;
       }
