@@ -18,13 +18,13 @@
       </li>
 
       <li class="mr-6" v-if="user">
-        <router-link to="/signup">
+        <router-link to="/albums">
           <a href="" class="cursor-pointer text blue-500 hover:text-blue-800">Albums</a>
         </router-link>
       </li>
       <li class="mr-6" v-if="user">
-        <router-link to="/signup">
-          <a href="" class="cursor-pointer text blue-500 hover:text-blue-800">Logout</a>
+        <router-link to="/">
+          <a href="" class="cursor-pointer text blue-500" @click="logout">Logout</a>
         </router-link>
       </li>
     </ul>
