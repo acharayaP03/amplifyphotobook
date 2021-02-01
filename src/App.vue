@@ -8,11 +8,19 @@
 </template>
 
 <script>
+
+import { mapActions } from 'vuex';
 import Navbar from '@/components/Navbar.vue';
 
 export default {
+  mounted() {
+    this.authAction();
+  },
   components: {
     Navbar,
+  },
+  methods: {
+    ...mapActions('auth', ['authAction']),
   },
 };
 </script>
