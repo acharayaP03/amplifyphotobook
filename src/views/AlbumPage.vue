@@ -8,7 +8,7 @@
         type="text"
         v-model="albumName"
       />
-      <button class="mb-4 btn-blue">Create Album</button>
+      <button class="mb-4 btn-blue" @click="createAlbum()">Create Album</button>
     </div>
     <div class="text-red-500">{{ error }}</div>
     <hr />
@@ -20,27 +20,44 @@
         class="flex items-center justify-center w-3/12 h-24 mt-4 ml-4 shadow-xl cursor-pointer"
         @click="openAlbumDetail(album)"
       >
-        <div class="text-2xl">{{ album }}</div>
+        <div class="text-2xl">{{ album.name }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex';
+
 export default {
-  // async mounted() {
-  //   this.$store.dispatch("albumInfo/getAlbumsData");
-  // },
+  async mounted() {
+    this.$store.dispatch('albumInfo/getAlbumsData');
+  },
   data: () => ({ albumName: '', error: '' }),
   methods: {
     openAlbumDetail(album) {
-      return album;
+      this.$router.push(`/album/${album.id}`);
     },
     async createAlbum() {
-      return true;
+      this.error = '';
+      if (!this.albumName) {
+        this.error = 'Please enter an album name';
+        return;
+      }
+      const newAlbum = {
+        name: this.albumName,
+        owner: this.user.username,
+        ownerId: this.user.id,
+      };
+      this.$store.dispatch('albumInfo/createAlbum', newAlbum);
     },
   },
   computed: {
+    ...mapGetters({
+      user: 'auth/user',
+      albums: 'albumInfo/albums',
+    }),
   },
 };
 </script>
